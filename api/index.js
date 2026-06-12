@@ -1,12 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const https = require('https');
 
 const app = express();
+app.use(cors());
 
-// Esta ruta hará que funcione en la dirección principal del proyecto
-app.get('/', async (req, res) => {
+app.get('/api/tasas', async (req, res) => {
     try {
         const agent = new https.Agent({ rejectUnauthorized: false });
         const response = await axios.get('https://www.bcv.org.ve/', { httpsAgent: agent });
